@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate-2017",
+  "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "React 16.0 boilerplate with SSR",
+  "description": "React 16.0 boilerplate",
   "main": "src/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress --colors",

@@ -1,29 +1,22 @@
-# React Boilerplate 2017
-
-> Universal React v16.0 boilerplate
+# React Boilerplate
 
 ## Getting Started
 
-### Client Side Development
+### Development
 
 ```bash
-cd client
 yarn install
 yarn dev
 ```
 
 Navigate to `http://localhost:8080`
 
-### Server Side Development
+### Build
 
 ```bash
-cd client
-yarn install
-yarn run dev:server
-
-cd server
-yarn install
-yarn watch
+yarn build
 ```
 
-Navigate to `http://localhost:3000`
+Compiled assets files will be in `build` folder
+
+> For the server side rendering version, please visit [react-boilerplate-ssr](https://github.com/AlanWei/react-boilerplate-ssr)
