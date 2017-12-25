@@ -10,7 +10,7 @@ function createAppStore(history, preloadedState = {}) {
 
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line no-underscore-dangle
-    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   }
 
   // middlewares
