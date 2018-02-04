@@ -23,6 +23,7 @@ module.exports = {
       'react-redux',
       'redux-thunk',
       'reselect',
+      'axios',
     ],
     client: './index.js',
   },
