@@ -26,7 +26,7 @@ class Home extends Component {
         <p className="App-intro">
           To get started, edit <code>src/views/home/index.js</code> and save to reload.
         </p>
-        <Link to="/user">
+        <Link to="/user" href="/user">
           <p className="App-intro">
             {this.props.message}
           </p>
