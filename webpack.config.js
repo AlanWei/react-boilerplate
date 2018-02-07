@@ -1,8 +1,8 @@
 const webpack = require('webpack');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 
@@ -45,9 +45,6 @@ module.exports = {
       },
     }, {
       test: /\.(scss|css)$/,
-      include: [
-        SOURCE_DIR,
-      ],
       use: ExtractTextPlugin.extract({
         fallback: {
           loader: 'style-loader',
@@ -91,27 +88,24 @@ module.exports = {
     }],
   },
 
-  resolve: {
-    extensions: ['.jsx', '.js', '.json', '.scss'],
-    modules: [
-      path.resolve(__dirname, 'node_modules'),
-      'node_modules',
-    ],
-    alias: {},
-  },
-
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(ENV),
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'assets/vendor.[hash:8].js',
+    }),
+    new CircularDependencyPlugin({
+      exclude: /a\.js|node_modules/, // exclude node_modules
+      failOnError: false, // show a warning when there is a circular dependency
+    }),
     new ExtractTextPlugin({
       filename: 'assets/css/style.[hash].css',
       allChunks: true,
       disable: ENV !== 'production',
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(ENV),
-    }),
-    new ManifestPlugin(),
-  ].concat([
     new CopyWebpackPlugin([
       { from: 'favicon.ico' },
     ]),
@@ -120,28 +114,26 @@ module.exports = {
       filename: './index.html',
       template: './index.ejs',
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'assets/vendor.[hash:8].js',
-    }),
-  // Production-only plugins
-  ]).concat(ENV !== 'production' ? [] : [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-  ]),
+  ].concat(ENV === 'production' ?
+    [
+      new webpack.optimize.ModuleConcatenationPlugin(),
+      new webpack.optimize.OccurrenceOrderPlugin(),
+    ]
+    :
+    []),
 
-  stats: { colors: true },
-
-  node: {
-    global: true,
-    process: false,
-    Buffer: false,
-    __filename: false,
-    __dirname: false,
-    setImmediate: false,
+  resolve: {
+    extensions: ['.jsx', '.js', '.json', '.scss'],
+    modules: [
+      SOURCE_DIR,
+      'node_modules',
+    ],
+    alias: {},
   },
 
-  devtool: ENV === 'production' ? 'cheap-module-source-map' : 'cheap-module-eval-source-map',
-
+  stats: { colors: true },
+  devtool: ENV === 'production' ? 'source-map' : 'eval-source-map',
+  target: 'web',
   devServer: {
     port: process.env.PORT || 8080,
     host: 'localhost',
