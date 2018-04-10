@@ -1,41 +1,41 @@
 const webpack = require('webpack');
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
+const pkg = require('./package.json');
 
 const ENV = process.env.NODE_ENV || 'development';
+const VERSION = `v${pkg.version}`;
+const IS_PROD = ENV === 'production';
 
 const SOURCE_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'build');
+const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);
 
 module.exports = {
+  mode: ENV,
   context: SOURCE_DIR,
   entry: {
-    vendor: [
-      'react',
-      'react-dom',
-      'classnames',
-      'prop-types',
-      'redux',
-      'react-redux',
-      'redux-thunk',
-      'reselect',
-      'axios',
-    ],
     client: './index.js',
   },
-
   output: {
-    path: OUTPUT_DIR,
-    publicPath: '/',
+    path: CLIENT_DIR,
+    filename: 'assets/[name].[hash:8].js',
     libraryTarget: 'umd',
-    filename: 'assets/[name].[chunkhash:8].js',
-    chunkFilename: 'assets/[id].[name].[chunkhash:8].js',
   },
-
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   module: {
     rules: [{
       test: /\.(jsx|js)$/,
@@ -44,40 +44,48 @@ module.exports = {
         loader: 'babel-loader',
       },
     }, {
-      test: /\.(scss|css)$/,
-      use: ExtractTextPlugin.extract({
-        fallback: {
-          loader: 'style-loader',
-          options: {
-            singleton: true,
-          },
-        },
-        use: [{
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: IS_PROD ? [
+        MiniCssExtractPlugin.loader,
+        {
           loader: 'css-loader',
-          options: {
-            minimize: ENV === 'production',
-            sourceMap: ENV === 'development',
-            importLoaders: 1,
-          },
-        }, {
+          options: { minimize: true },
+        },
+        {
           loader: 'postcss-loader',
           options: {
-            plugins: () => [
-              autoprefixer({ browsers: 'last 5 versions' }),
-            ],
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
             sourceMap: true,
           },
-        }, {
-          loader: 'sass-loader',
+        },
+        'sass-loader',
+      ] : [
+        {
+          loader: 'style-loader',
+          options: { singleton: true },
+        },
+        'css-loader',
+        {
+          loader: 'postcss-loader',
           options: {
-            sourceMap: ENV === 'development',
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+            sourceMap: true,
           },
-        }],
-      }),
+        },
+        'sass-loader',
+      ],
+    }, {
+      test: /\.css$/,
+      include: /node_modules/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+      ],
     }, {
       test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
       use: ENV === 'production' ? {
-        loader: 'file-loader?name=[path][name]_[hash].[ext]',
+        loader: 'file-loader',
         options: {
           name: '[hash:8].[ext]',
           outputPath: 'assets/images/',
@@ -87,24 +95,14 @@ module.exports = {
       },
     }],
   },
-
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(ENV),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'assets/vendor.[hash:8].js',
-    }),
-    new CircularDependencyPlugin({
-      exclude: /a\.js|node_modules/, // exclude node_modules
-      failOnError: false, // show a warning when there is a circular dependency
-    }),
-    new ExtractTextPlugin({
-      filename: 'assets/css/style.[hash].css',
-      allChunks: true,
-      disable: ENV !== 'production',
+    new MiniCssExtractPlugin({
+      filename: 'assets/css/style.[hash:8].css',
+      chunkFilename: 'assets/css/[id].[hash:8].css',
     }),
     new CopyWebpackPlugin([
       { from: 'favicon.ico' },
@@ -114,26 +112,16 @@ module.exports = {
       filename: './index.html',
       template: './index.ejs',
     }),
-  ].concat(ENV === 'production' ?
-    [
-      new webpack.optimize.ModuleConcatenationPlugin(),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-    ]
-    :
-    []),
-
+  ],
   resolve: {
     extensions: ['.jsx', '.js', '.json', '.scss'],
     modules: [
       SOURCE_DIR,
       'node_modules',
     ],
-    alias: {},
   },
-
   stats: { colors: true },
-  devtool: ENV === 'production' ? 'source-map' : 'eval-source-map',
-  target: 'web',
+  devtool: IS_PROD ? 'source-map' : 'eval-source-map',
   devServer: {
     port: process.env.PORT || 8080,
     host: 'localhost',
