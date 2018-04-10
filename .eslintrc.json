@@ -13,8 +13,12 @@
     "react/prefer-stateless-function": 1,
     "react/forbid-prop-types": [0],
     "import/extensions": [1, { "js": "never", "json": "never" }],
-    "import/no-unresolved": [2, { "ignore": [ "utils/", "app/", "views/" ] }],
     "import/no-extraneous-dependencies": [0]
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
   },
   "globals": {
     "document": true,

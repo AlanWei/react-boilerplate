@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import logo from 'assets/logo.svg';
 import action from './action';
-import logo from '../../assets/logo.svg';
 import './style.scss';
 
 const propTypes = {

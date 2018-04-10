@@ -87,7 +87,7 @@ module.exports = {
       use: ENV === 'production' ? {
         loader: 'file-loader',
         options: {
-          name: '[hash:8].[ext]',
+          name: '[name].[hash:8].[ext]',
           outputPath: 'assets/images/',
         },
       } : {
