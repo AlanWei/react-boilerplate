@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -16,6 +15,7 @@ const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);
 
 module.exports = {
   mode: ENV,
+  target: 'web',
   context: SOURCE_DIR,
   entry: {
     client: './index.js',
@@ -96,10 +96,6 @@ module.exports = {
     }],
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(ENV),
-    }),
     new MiniCssExtractPlugin({
       filename: 'assets/css/style.[hash:8].css',
       chunkFilename: 'assets/css/[id].[hash:8].css',
@@ -113,20 +109,12 @@ module.exports = {
       template: './index.ejs',
     }),
   ],
-  resolve: {
-    extensions: ['.jsx', '.js', '.json', '.scss'],
-    modules: [
-      SOURCE_DIR,
-      'node_modules',
-    ],
-  },
-  stats: { colors: true },
   devtool: IS_PROD ? 'source-map' : 'eval-source-map',
   devServer: {
     port: process.env.PORT || 8080,
     host: 'localhost',
     publicPath: '/',
-    contentBase: './src',
+    contentBase: SOURCE_DIR,
     historyApiFallback: true,
   },
 };
