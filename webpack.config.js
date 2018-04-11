@@ -84,7 +84,7 @@ module.exports = {
       ],
     }, {
       test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-      use: ENV === 'production' ? {
+      use: IS_PROD ? {
         loader: 'file-loader',
         options: {
           name: '[name].[hash:8].[ext]',
