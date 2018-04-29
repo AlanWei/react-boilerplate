@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl-context';
 import logo from 'assets/logo.svg';
 import action from './action';
 import './style.scss';
@@ -9,6 +10,7 @@ import './style.scss';
 const propTypes = {
   message: PropTypes.string.isRequired,
   getMessage: PropTypes.func.isRequired,
+  intl: PropTypes.object.isRequired,
 };
 
 class Home extends Component {
@@ -31,6 +33,8 @@ class Home extends Component {
             {this.props.message}
           </p>
         </Link>
+        <p>{this.props.intl.formatMessage({ id: 'test' })}</p>
+        <p>{this.props.intl.formatMessage({ id: 'abc' })}</p>
       </div>
     );
   }
@@ -45,4 +49,7 @@ const mapDispatchToProps = {
 };
 
 Home.propTypes = propTypes;
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntl(Home));

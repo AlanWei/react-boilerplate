@@ -1,17 +1,27 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const pkg = require('./package.json');
+const buildConfig = require('./buildConfig');
 
 const ENV = process.env.NODE_ENV || 'development';
+const BUILD_DOMAIN = process.env.BUILD_DOMAIN || 'localhost';
 const VERSION = `v${pkg.version}`;
 const IS_PROD = ENV === 'production';
 
 const SOURCE_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'build');
 const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);
+
+const config = buildConfig[BUILD_DOMAIN];
+
+/* eslint-disable global-require,import/no-dynamic-require */
+const { locale } = config;
+const localeMessages = require(`./src/i18n/${locale}.json`);
+/* eslint-enable global-require,import/no-dynamic-require  */
 
 module.exports = {
   mode: ENV,
@@ -96,6 +106,12 @@ module.exports = {
     }],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(ENV),
+      'process.env.BUILD_CONFIG': JSON.stringify(config),
+      'process.env.BUILD_LOCALE': JSON.stringify(locale),
+      'process.env.BUILD_LOCALE_MESSAGES': JSON.stringify(localeMessages),
+    }),
     new MiniCssExtractPlugin({
       filename: 'assets/css/style.[hash:8].css',
       chunkFilename: 'assets/css/[id].[hash:8].css',
