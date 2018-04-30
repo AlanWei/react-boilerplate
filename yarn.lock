@@ -6807,11 +6807,10 @@ react-dom@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-intl-context@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-intl-context/-/react-intl-context-0.2.0.tgz#e828db81dce2b2b7c0688f90a5f09fceec6d7df1"
+react-intl-context@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-intl-context/-/react-intl-context-0.3.0.tgz#d89793250e875ba3677eb6353a923e9ac7c58528"
   dependencies:
-    lodash "^4.17.10"
     prop-types "^15.6.1"
     react "^16.3.2"
 
