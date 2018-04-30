@@ -1,0 +1,11 @@
+@import '../styles/helpers';
+
+.basicLayout {
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+  .mainContent {
+    flex: 1;
+    background: $ui-background;
+  }
+}

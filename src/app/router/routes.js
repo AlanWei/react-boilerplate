@@ -1,4 +1,5 @@
 import Loadable from 'react-loadable';
+import Dashboard from 'views/dashboard';
 
 const AsyncHome = Loadable({
   loader: () => import('views/home'),
@@ -17,6 +18,9 @@ const routes = [{
 }, {
   path: '/user',
   component: AsyncUser,
+}, {
+  path: '/dashboard',
+  component: Dashboard,
 }];
 
 export default routes;
