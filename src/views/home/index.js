@@ -34,7 +34,6 @@ class Home extends Component {
           </p>
         </Link>
         <p>{this.props.intl.formatMessage({ id: 'test' })}</p>
-        <p>{this.props.intl.formatMessage({ id: 'abc' })}</p>
       </div>
     );
   }

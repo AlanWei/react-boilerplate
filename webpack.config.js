@@ -120,7 +120,7 @@ module.exports = {
       { from: 'favicon.ico' },
     ]),
     new HtmlWebpackPlugin({
-      title: 'React App',
+      title: 'React App Pro',
       filename: './index.html',
       template: './index.ejs',
     }),
