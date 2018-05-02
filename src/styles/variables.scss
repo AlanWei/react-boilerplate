@@ -1,4 +1,7 @@
-// color palettes
+// overwrite ant
+$font-family-no-number: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// antd color palettes
 $antd-grey-1: #ffffff !default;
 $antd-grey-2: #fafafa !default;
 $antd-grey-3: #f5f5f5 !default;
@@ -46,6 +49,14 @@ $antd-green-10: #092b00 !default;
 $antd-font-size-base: 14px !default;
 $antd-font-size-lg: 16px !default;
 $antd-font-size-sm: 12px !default;
-$font-size-xl: 20px !default;
 
+$antd-shadow-color: rgba(0, 0, 0, .15) !default;
+$antd-shadow-1-up: 0 2px 8px $antd-shadow-color !default;
+$antd-shadow-1-down: 0 2px 8px $antd-shadow-color !default;
+$antd-shadow-1-left: -2px 0 8px $antd-shadow-color !default;
+$antd-shadow-1-right: 2px 0 8px $antd-shadow-color !default;
+
+$antd-layout-body-background: #f0f2f5 !default;
+// custom
+$font-size-xl: 20px !default;
 $border-radius-base: 4px !default;

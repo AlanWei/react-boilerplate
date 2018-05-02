@@ -3,6 +3,7 @@
 .sider {
   width: 16em;
   min-height: 100vh;
+  box-shadow: $antd-shadow-1-right;
   &-header {
     height: 4em;
     padding: 1em;
@@ -12,7 +13,7 @@
       border-radius: $border-radius-base;
       color: $antd-grey-1;
       font-weight: bold;
-      font-size: font-size-title;
+      font-size: $font-size-xl;
       display: flex;
       justify-content: center;
       align-items: center;

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl-context';
-import logo from 'assets/logo.svg';
+import BasicLayout from 'layouts/BasicLayout';
 import action from './action';
 import './style.scss';
 
@@ -20,21 +19,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/views/home/index.js</code> and save to reload.
-        </p>
-        <Link to="/user" href="/user">
-          <p className="App-intro">
-            {this.props.message}
-          </p>
-        </Link>
+      <BasicLayout contentClassName="view-home">
+        <p>{this.props.message}</p>
         <p>{this.props.intl.formatMessage({ id: 'test' })}</p>
-      </div>
+      </BasicLayout>
     );
   }
 }
