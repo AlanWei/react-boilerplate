@@ -1,7 +1,8 @@
 @import '../styles/helpers';
 
 .sider {
-  width: 256px;
+  width: 16em;
+  min-height: 100vh;
   &-header {
     height: 4em;
     padding: 1em;

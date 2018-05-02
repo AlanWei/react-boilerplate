@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
@@ -17,11 +17,11 @@ const Router = props => (
       locale={buildLocale.locale}
       messages={buildLocale.messages}
     >
-      <div>
+      <Fragment>
         {map(routes, (route, idx) => (
           <Route key={idx} {...route} />
         ))}
-      </div>
+      </Fragment>
     </IntlProvider>
   </ConnectedRouter>
 );

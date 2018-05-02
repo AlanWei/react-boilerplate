@@ -1,0 +1,12 @@
+@import '../styles/helpers';
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .mainContent {
+    flex: 1;
+    margin: 1.5em 1.5em 0;
+    background: $ui-white;
+  }
+}

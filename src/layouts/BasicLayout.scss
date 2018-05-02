@@ -4,8 +4,7 @@
   display: flex;
   min-height: 100vh;
   overflow-x: hidden;
-  .mainContent {
+  .content {
     flex: 1;
-    background: $ui-background;
   }
 }

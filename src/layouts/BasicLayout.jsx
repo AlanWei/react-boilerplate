@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sider from './Sider';
+import Content from './Content';
 import './BasicLayout.scss';
 
 class BasicLayout extends Component {
@@ -7,9 +8,7 @@ class BasicLayout extends Component {
     return (
       <div className="basicLayout">
         <Sider />
-        <div className="mainContent">
-          {this.props.children}
-        </div>
+        <Content />
       </div>
     );
   }
