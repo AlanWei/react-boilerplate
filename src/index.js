@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
-import app from 'app/index';
+import app from './app';
 
-import './styles/index.scss';
+import './styles/index.less';
 
 const client = app.createStore(createBrowserHistory(), {});
 

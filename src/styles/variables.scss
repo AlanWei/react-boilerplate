@@ -1,39 +1,51 @@
-// General color scheme
-$ui-white: #fff !default;
-$ui-white-darken-2: #f5f5f5 !default;
-$ui-white-darken-3: #efefef !default;
-$ui-white-darken-4: #d8d8d8 !default;
-$ui-white-darken-5: #9b9b9b !default;
+// color palettes
+$antd-grey-1: #ffffff !default;
+$antd-grey-2: #fafafa !default;
+$antd-grey-3: #f5f5f5 !default;
+$antd-grey-4: #e8e8e8 !default;
+$antd-grey-5: #d9d9d9 !default;
+$antd-grey-6: #bfbfbf !default;
+$antd-grey-7: #8c8c8c !default;
+$antd-grey-8: #595959 !default;
+$antd-grey-9: #262626 !default;
+$antd-grey-10: #000000 !default;
 
-$ui-black: #40485a !default;
-$ui-black-lighten: #5a6274 !default;
-$ui-black-darken: #272f41 !default;
+$antd-blue-1: #e6f7ff !default;
+$antd-blue-2: #bae7ff !default;
+$antd-blue-3: #91d5ff !default;
+$antd-blue-4: #69c0ff !default;
+$antd-blue-5: #40a9ff !default;
+$antd-blue-6: #1890ff !default;
+$antd-blue-7: #096dd9 !default;
+$antd-blue-8: #0050b3 !default;
+$antd-blue-9: #003a8c !default;
+$antd-blue-10: #002766 !default;
 
-$ui-green: #3ac88e !default;
-$ui-green-lighten: #54e2a8 !default;
-$ui-green-darken: #21af75 !default;
+$antd-red-1: #fff1f0 !default;
+$antd-red-2: #ffccc7 !default;
+$antd-red-3: #ffa39e !default;
+$antd-red-4: #ff7875 !default;
+$antd-red-5: #ff4d4f !default;
+$antd-red-6: #f5222d !default;
+$antd-red-7: #cf1322 !default;
+$antd-red-8: #a8071a !default;
+$antd-red-9: #820014 !default;
+$antd-red-10: #5c0011 !default;
 
-$ui-red: #ff4e4e !default;
-$ui-red-lighten: #ff6868 !default;
-$ui-red-darken: #e63535 !default;
+$antd-green-1: #f6ffed !default;
+$antd-green-2: #d9f7be !default;
+$antd-green-3: #b7eb8f !default;
+$antd-green-4: #95de64 !default;
+$antd-green-5: #73d13d !default;
+$antd-green-6: #52c41a !default;
+$antd-green-7: #389e0d !default;
+$antd-green-8: #237804 !default;
+$antd-green-9: #135200 !default;
+$antd-green-10: #092b00 !default;
 
-$ui-blue: #286fdc !default;
-$ui-blue-lighten: #4289f6 !default;
-$ui-blue-darken: #0f56c3 !default;
+$antd-font-size-base: 14px !default;
+$antd-font-size-lg: 16px !default;
+$antd-font-size-sm: 12px !default;
+$font-size-xl: 20px !default;
 
-// Aliases
-$ui-text: $ui-black !default;
-$ui-text-lighten: $ui-white-darken-5 !default;
-$ui-disabled: $ui-white-darken-4 !default;
-$ui-success: $ui-green !default;
-$ui-info: $ui-blue !default;
-$ui-primary: $ui-red !default;
-$ui-background: $ui-white-darken-2 !default;
-
-//
-$ui-border-radius: 4px !default;
-$box-shadow-bottom: 0 1px 4px rgba(0, 21, 41, .08);
-
-//
-$font-size: 16px !default;
-$font-size-title: 20px !default;
+$border-radius-base: 4px !default;

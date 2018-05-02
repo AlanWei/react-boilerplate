@@ -6,13 +6,13 @@
   &-header {
     height: 4em;
     padding: 1em;
-    background: $ui-blue;
+    background: $antd-blue-8;
     &-appName-placeholder {
       height: 100%;
-      border-radius: $ui-border-radius;
-      color: $ui-white;
+      border-radius: $border-radius-base;
+      color: $antd-grey-1;
       font-weight: bold;
-      font-size: $font-size-title;
+      font-size: font-size-title;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,6 +21,6 @@
   &-body {
     padding: 1em 0;
     min-height: calc(100% - 64px);
-    background: $ui-blue-darken;
+    background: $antd-blue-9;
   }
 }

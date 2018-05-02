@@ -57,8 +57,23 @@ module.exports = {
         loader: 'babel-loader',
       },
     }, {
+      test: /\.less$/,
+      use: [
+        { loader: 'style-loader' },
+        { loader: 'css-loader' },
+        {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true,
+          },
+        },
+      ],
+    }, {
       test: /\.scss$/,
       exclude: /node_modules/,
+      issuer: {
+        exclude: /\.less$/,
+      },
       use: IS_PROD ? [
         MiniCssExtractPlugin.loader,
         {
@@ -88,6 +103,12 @@ module.exports = {
         },
         'sass-loader',
       ],
+    }, {
+      test: /\.scss$/,
+      issuer: /\.less$/,
+      use: {
+        loader: '../sassVarsToLess.js',
+      },
     }, {
       test: /\.css$/,
       include: /node_modules/,
