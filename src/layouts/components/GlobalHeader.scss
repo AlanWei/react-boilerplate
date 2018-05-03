@@ -1,8 +1,8 @@
-@import '../styles/helpers';
+@import 'styles/helpers';
 
 .globalHeader {
   width: 100%;
-  height: 4em;
+  height: 64px;
   background: $antd-grey-1;
   box-shadow: $antd-shadow-1-down;
 }

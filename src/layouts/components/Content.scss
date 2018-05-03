@@ -1,4 +1,4 @@
-@import '../styles/helpers';
+@import 'styles/helpers';
 
 .content {
   width: 100%;
@@ -7,7 +7,8 @@
   background: $antd-layout-body-background;
   .mainContent {
     flex: 1;
-    margin: 1.5em 1.5em 0;
+    margin: 24px 24px 0;
     background: $antd-grey-1;
+    box-shadow: $antd-shadow-1-right;
   }
 }

@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import './Sider.scss';
 
 const propTypes = {
   prefixCls: PropTypes.string,
-  appName: PropTypes.string,
+  className: PropTypes.string,
+  renderSiderHeader: PropTypes.func,
   renderSiderBody: PropTypes.func,
 };
 
 const defaultProps = {
   prefixCls: 'sider',
-  appName: 'React App',
+  className: '',
+  renderSiderHeader: () => (<div />),
   renderSiderBody: () => (<div />),
 };
 
 class Sider extends Component {
   render() {
-    const { prefixCls } = this.props;
+    const { prefixCls, className } = this.props;
+    const classes = classnames({
+      [prefixCls]: true,
+      [className]: true,
+    });
     return (
-      <div className={prefixCls}>
+      <div className={classes}>
         <div className={`${prefixCls}-header`}>
-          <div className={`${prefixCls}-header-appName-placeholder`}>
-            {this.props.appName}
-          </div>
+          {this.props.renderSiderHeader()}
         </div>
         <div className={`${prefixCls}-body`}>
           {this.props.renderSiderBody()}

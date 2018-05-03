@@ -1,0 +1,23 @@
+@import 'styles/helpers';
+
+.sider {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  box-shadow: $antd-shadow-1-right;
+  &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    background: $antd-blue-9;
+    color: $antd-grey-1;
+    font-weight: bold;
+    font-size: $font-size-xl;
+  }
+  &-body {
+    flex: 1;
+    background: $antd-blue-10;
+  }
+}

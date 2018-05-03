@@ -87,7 +87,14 @@ module.exports = {
             sourceMap: true,
           },
         },
-        'sass-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [
+              SOURCE_DIR,
+            ],
+          },
+        },
       ] : [
         {
           loader: 'style-loader',
@@ -101,7 +108,14 @@ module.exports = {
             sourceMap: true,
           },
         },
-        'sass-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [
+              SOURCE_DIR,
+            ],
+          },
+        },
       ],
     }, {
       test: /\.scss$/,
