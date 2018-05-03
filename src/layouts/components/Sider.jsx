@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
+import map from 'lodash/map';
+import get from 'lodash/get';
 import logo from 'assets/logo.svg';
 import './Sider.scss';
 
@@ -28,28 +30,27 @@ const defaultProps = {
 };
 
 class Sider extends Component {
-  renderMenu = () => (
-    this.props.menuData.map((item) => {
+  renderMenu = data => (
+    map(data, (item) => {
       if (item.children) {
         return (
           <SubMenu
-            key={item.key}
+            key={item.path}
             title={<span><Icon type={item.icon} /><span>{item.name}</span></span>}
           >
-            {item.children.map(child => (
-              <Menu.Item key={child.key}>
-                <Link to={child.path} href={child.path}>
-                  {child.name}
-                </Link>
-              </Menu.Item>
-            ))}
+            {this.renderMenu(item.children)}
           </SubMenu>
         );
       }
       return (
-        <Menu.Item key={item.key}>
-          <Icon type={item.icon} />
-          <span>{item.name}</span>
+        <Menu.Item key={item.path}>
+          <Link
+            to={item.path}
+            href={item.path}
+          >
+            <Icon type={item.icon} />
+            <span>{item.name}</span>
+          </Link>
         </Menu.Item>
       );
     })
@@ -72,11 +73,11 @@ class Sider extends Component {
 
   renderSiderBody = () => (
     <Menu
-      defaultOpenKeys={['sub1']}
+      defaultOpenKeys={[get(this.props, 'menuData[0].path', '')]}
       mode="inline"
       theme="dark"
     >
-      {this.renderMenu()}
+      {this.renderMenu(this.props.menuData)}
     </Menu>
   )
 

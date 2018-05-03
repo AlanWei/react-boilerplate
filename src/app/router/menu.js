@@ -1,34 +1,56 @@
-export default [{
+import map from 'lodash/map';
+import formatMenuPath from 'utils/formatMenuPath';
+
+const menuData = [{
   name: 'Dashboard',
   icon: 'dashboard',
-  key: 'sub1',
+  path: 'dashboard',
   children: [{
     name: 'Analysis',
     path: 'analysis',
-    key: 'sub1-1',
+    children: [{
+      name: 'Real-time',
+      path: 'realtime',
+    }, {
+      name: 'Offline',
+      path: 'offline',
+    }],
   },
   {
     name: 'Monitor',
     path: 'monitor',
-    key: 'sub1-2',
   },
   {
     name: 'Workplace',
     path: 'workplace',
-    key: 'sub1-3',
   }],
 }, {
   name: 'Finance',
   icon: 'form',
-  key: 'sub2',
+  path: 'finance',
   children: [{
     name: 'Salary',
     path: 'salary',
-    key: 'sub2-1',
   }],
 }, {
   name: 'Marketing',
   icon: 'table',
   path: 'marketing',
-  key: 'sub3',
 }];
+
+const formatter = (data, parentPaths = []) => (
+  map(data, (item) => {
+    if (item.children) {
+      return {
+        ...item,
+        children: formatter(item.children, parentPaths.concat(item.path)),
+      };
+    }
+    return {
+      ...item,
+      path: formatMenuPath(parentPaths.concat(item.path)),
+    };
+  })
+);
+
+export default formatter(menuData);

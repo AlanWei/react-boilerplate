@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Loadable from 'react-loadable';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import NotFound from 'views/notFound';
 
 const Routes = () => (
-  <Fragment>
+  <Switch>
     <Route
       path="/"
       exact
@@ -13,14 +14,15 @@ const Routes = () => (
       })}
     />
     <Route
-      path="/analysis"
+      path="/dashboard/analysis"
       exact
       component={Loadable({
         loader: () => import('views/analysis'),
         loading: () => null,
       })}
     />
-  </Fragment>
+    <Route component={NotFound} />
+  </Switch>
 );
 
 export default Routes;
