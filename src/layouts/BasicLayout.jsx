@@ -8,13 +8,20 @@ import './BasicLayout.scss';
 const propTypes = {
   prefixCls: PropTypes.string,
   className: PropTypes.string,
-  contentClassName: PropTypes.string,
+  appName: PropTypes.string,
+  menuData: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    path: PropTypes.string,
+    icon: PropTypes.string,
+    children: PropTypes.array,
+  })),
 };
 
 const defaultProps = {
   prefixCls: 'basicLayout',
   className: '',
-  contentClassName: '',
+  appName: '',
+  menuData: [],
 };
 
 class BasicLayout extends Component {
@@ -25,8 +32,11 @@ class BasicLayout extends Component {
     });
     return (
       <div className={classes}>
-        <Sider />
-        <Content className={this.props.contentClassName}>
+        <Sider
+          appName={this.props.appName}
+          menuData={this.props.menuData}
+        />
+        <Content>
           {this.props.children}
         </Content>
       </div>

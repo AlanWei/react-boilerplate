@@ -8,16 +8,22 @@
   box-shadow: $antd-shadow-1-right;
   &-header {
     display: flex;
-    justify-content: center;
     align-items: center;
+    background: $antd-layout-sider-header-background;
     height: 64px;
-    background: $antd-blue-9;
-    color: $antd-grey-1;
-    font-weight: bold;
-    font-size: $font-size-xl;
+    padding-left: 24px;
   }
   &-body {
     flex: 1;
-    background: $antd-blue-10;
+    background: $antd-layout-sider-body-background;
+  }
+  &-logo {
+    height: 48px;
+    width: 48px;
+  }
+  &-appName {
+    color: $antd-grey-1;
+    font-weight: bold;
+    font-size: $font-size-xl;
   }
 }

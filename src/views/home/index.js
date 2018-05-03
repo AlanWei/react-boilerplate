@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl-context';
-import BasicLayout from 'layouts/BasicLayout';
 import action from './action';
 import './style.scss';
 
@@ -19,10 +18,10 @@ class Home extends Component {
 
   render() {
     return (
-      <BasicLayout contentClassName="view-home">
+      <div className="view-home">
         <p>{this.props.message}</p>
         <p>{this.props.intl.formatMessage({ id: 'test' })}</p>
-      </BasicLayout>
+      </div>
     );
   }
 }

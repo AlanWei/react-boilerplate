@@ -1,14 +1,26 @@
+import React, { Fragment } from 'react';
 import Loadable from 'react-loadable';
+import { Route } from 'react-router-dom';
 
-const AsyncHome = Loadable({
-  loader: () => import('views/home'),
-  loading: () => null,
-});
+const Routes = () => (
+  <Fragment>
+    <Route
+      path="/"
+      exact
+      component={Loadable({
+        loader: () => import('views/home'),
+        loading: () => null,
+      })}
+    />
+    <Route
+      path="/analysis"
+      exact
+      component={Loadable({
+        loader: () => import('views/analysis'),
+        loading: () => null,
+      })}
+    />
+  </Fragment>
+);
 
-const routes = [{
-  path: '/',
-  exact: true,
-  component: AsyncHome,
-}];
-
-export default routes;
+export default Routes;

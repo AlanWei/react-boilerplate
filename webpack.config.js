@@ -19,7 +19,7 @@ const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);
 const config = buildConfig[BUILD_DOMAIN];
 
 /* eslint-disable global-require,import/no-dynamic-require */
-const { locale } = config;
+const { locale, appName } = config;
 const localeMessages = require(`./src/i18n/${locale}.json`);
 /* eslint-enable global-require,import/no-dynamic-require  */
 
@@ -147,7 +147,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(ENV),
       'process.env.BUILD_CONFIG': JSON.stringify(config),
-      'process.env.BUILD_LOCALE': JSON.stringify(locale),
       'process.env.BUILD_LOCALE_MESSAGES': JSON.stringify(localeMessages),
     }),
     new MiniCssExtractPlugin({
@@ -158,7 +157,7 @@ module.exports = {
       { from: 'favicon.ico' },
     ]),
     new HtmlWebpackPlugin({
-      title: 'React App Pro',
+      title: appName,
       filename: './index.html',
       template: './index.ejs',
     }),

@@ -1,11 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
-import map from 'lodash/map';
 import { IntlProvider } from 'react-intl-context';
-import buildLocale from '../buildLocale';
-import routes from './routes';
+import BasicLayout from 'layouts/BasicLayout';
+import { messages, buildConfig } from '../buildConfig';
+import menuData from './menu';
+import Routes from './routes';
+
+const { locale, appName } = buildConfig;
 
 const propTypes = {
   history: PropTypes.object.isRequired,
@@ -14,14 +16,15 @@ const propTypes = {
 const Router = props => (
   <ConnectedRouter history={props.history}>
     <IntlProvider
-      locale={buildLocale.locale}
-      messages={buildLocale.messages}
+      locale={locale}
+      messages={messages}
     >
-      <Fragment>
-        {map(routes, (route, idx) => (
-          <Route key={idx} {...route} />
-        ))}
-      </Fragment>
+      <BasicLayout
+        appName={appName}
+        menuData={menuData}
+      >
+        <Routes />
+      </BasicLayout>
     </IntlProvider>
   </ConnectedRouter>
 );
