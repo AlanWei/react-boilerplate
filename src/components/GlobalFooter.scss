@@ -1,0 +1,15 @@
+@import 'styles/helpers';
+
+.globalFooter-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.globalFooter-section {
+  margin-bottom: 8px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

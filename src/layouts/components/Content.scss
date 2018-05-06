@@ -8,7 +8,8 @@
   .mainContent {
     flex: 1;
     margin: 24px 24px 0;
+    padding: 16px;
     background: $antd-grey-1;
-    box-shadow: $antd-shadow-1-right;
+    box-shadow: $antd-shadow-1-down;
   }
 }

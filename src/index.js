@@ -5,6 +5,9 @@ import app from './app';
 import './styles/index.less';
 
 const client = app.createStore(createBrowserHistory(), {});
+const { store, history } = client;
 
-const application = app.createApp(client.store, client.history);
+const application = app.createApp(store, history);
+app.initClient(store.dispatch);
+
 ReactDOM.render(application, window.document.getElementById('app'));

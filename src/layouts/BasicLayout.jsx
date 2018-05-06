@@ -8,6 +8,7 @@ import './BasicLayout.scss';
 const propTypes = {
   prefixCls: PropTypes.string,
   className: PropTypes.string,
+  location: PropTypes.object.isRequired,
   appName: PropTypes.string,
   menuData: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
@@ -15,7 +16,8 @@ const propTypes = {
     icon: PropTypes.string,
     children: PropTypes.array,
   })),
-  location: PropTypes.object.isRequired,
+  renderGlobalHeader: PropTypes.func,
+  renderGlobalFooter: PropTypes.func,
 };
 
 const defaultProps = {
@@ -23,6 +25,8 @@ const defaultProps = {
   className: '',
   appName: '',
   menuData: [],
+  renderGlobalHeader: () => <div />,
+  renderGlobalFooter: () => <div />,
 };
 
 class BasicLayout extends Component {
@@ -38,7 +42,10 @@ class BasicLayout extends Component {
           menuData={this.props.menuData}
           location={this.props.location}
         />
-        <Content>
+        <Content
+          renderGlobalHeader={this.props.renderGlobalHeader}
+          renderGlobalFooter={this.props.renderGlobalFooter}
+        >
           {this.props.children}
         </Content>
       </div>
