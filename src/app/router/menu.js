@@ -1,5 +1,4 @@
 import map from 'lodash/map';
-import formatMenuPath from 'utils/formatMenuPath';
 
 const menuData = [{
   name: 'Dashboard',
@@ -38,18 +37,16 @@ const menuData = [{
   path: 'marketing',
 }];
 
-const formatter = (data, parentPaths = []) => (
+const formatter = (data, parentPath = '/') => (
   map(data, (item) => {
-    if (item.children) {
-      return {
-        ...item,
-        children: formatter(item.children, parentPaths.concat(item.path)),
-      };
-    }
-    return {
+    const result = {
       ...item,
-      path: formatMenuPath(parentPaths.concat(item.path)),
+      path: `${parentPath}${item.path}`,
     };
+    if (item.children) {
+      result.children = formatter(item.children, `${parentPath}${item.path}/`);
+    }
+    return result;
   })
 );
 

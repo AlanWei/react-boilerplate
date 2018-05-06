@@ -4,7 +4,9 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 import map from 'lodash/map';
-import get from 'lodash/get';
+import getFlatMenuKeys from 'utils/getFlatMenuKeys';
+import getMeunMatchKeys from 'utils/getMeunMatchKeys';
+import urlToList from 'utils/urlToList';
 import logo from 'assets/logo.svg';
 import './Sider.scss';
 
@@ -20,6 +22,7 @@ const propTypes = {
     icon: PropTypes.string,
     children: PropTypes.array,
   })),
+  location: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -29,7 +32,34 @@ const defaultProps = {
   menuData: [],
 };
 
+const getOpenKeys = (pathname, flatMenuKeys) => (
+  getMeunMatchKeys(flatMenuKeys, urlToList(pathname))
+);
+
 class Sider extends Component {
+  constructor(props) {
+    super(props);
+    this.flatMenuKeys = getFlatMenuKeys(this.props.menuData);
+  }
+
+  state = {
+    openKeys: getOpenKeys(this.props.location.pathname, this.flatMenuKeys),
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        openKeys: getOpenKeys(this.props.location.pathname, this.flatMenuKeys),
+      });
+    }
+  }
+
+  handleOpenChange = (openKeys) => {
+    this.setState({
+      openKeys,
+    });
+  };
+
   renderMenu = data => (
     map(data, (item) => {
       if (item.children) {
@@ -73,7 +103,9 @@ class Sider extends Component {
 
   renderSiderBody = () => (
     <Menu
-      defaultOpenKeys={[get(this.props, 'menuData[0].path', '')]}
+      openKeys={this.state.openKeys}
+      selectedKeys={this.state.openKeys}
+      onOpenChange={this.handleOpenChange}
       mode="inline"
       theme="dark"
     >

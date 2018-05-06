@@ -70,9 +70,6 @@
   },
   "jest": {
     "coverageDirectory": "./coverage/",
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/scripts/*"
-    ],
     "moduleNameMapper": {},
     "modulePaths": [
       "<rootDir>/src/"
@@ -80,8 +77,7 @@
     "resetMocks": true,
     "setupFiles": [],
     "testPathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/scripts/*"
+      "/node_modules/"
     ]
   }
 }

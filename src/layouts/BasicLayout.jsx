@@ -15,6 +15,7 @@ const propTypes = {
     icon: PropTypes.string,
     children: PropTypes.array,
   })),
+  location: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -35,6 +36,7 @@ class BasicLayout extends Component {
         <Sider
           appName={this.props.appName}
           menuData={this.props.menuData}
+          location={this.props.location}
         />
         <Content>
           {this.props.children}
