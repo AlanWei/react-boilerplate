@@ -104,11 +104,11 @@ class Sider extends Component {
   renderSiderBody = () => (
     <Menu
       style={{ padding: '16px 0', width: '100%' }}
+      mode="inline"
+      theme="dark"
       openKeys={this.state.openKeys}
       selectedKeys={this.state.openKeys}
       onOpenChange={this.handleOpenChange}
-      mode="inline"
-      theme="dark"
     >
       {this.renderMenu(this.props.menuData)}
     </Menu>

@@ -24,17 +24,17 @@ const menuData = [{
     path: 'workplace',
   }],
 }, {
-  name: 'Finance',
-  icon: 'form',
-  path: 'finance',
-  children: [{
-    name: 'Salary',
-    path: 'salary',
-  }],
-}, {
   name: 'Marketing',
   icon: 'table',
   path: 'marketing',
+}, {
+  name: 'Settings',
+  icon: 'setting',
+  path: 'settings',
+  children: [{
+    name: 'Users Management',
+    path: 'users',
+  }],
 }];
 
 const formatter = (data, parentPath = '/') => (

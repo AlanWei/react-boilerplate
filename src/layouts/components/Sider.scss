@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   width: 256px;
-  box-shadow: $antd-shadow-1-right;
+  box-shadow: 2px 0 8px $antd-shadow-color;
   &-header {
     display: flex;
     align-items: center;

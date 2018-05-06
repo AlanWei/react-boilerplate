@@ -51,10 +51,10 @@ $antd-font-size-lg: 16px !default;
 $antd-font-size-sm: 12px !default;
 
 $antd-shadow-color: rgba(0, 0, 0, .15) !default;
-$antd-shadow-1-up: 0 2px 8px $antd-shadow-color !default;
-$antd-shadow-1-down: 0 2px 8px $antd-shadow-color !default;
-$antd-shadow-1-left: -2px 0 8px $antd-shadow-color !default;
-$antd-shadow-1-right: 2px 0 8px $antd-shadow-color !default;
+$antd-shadow-1-up: 0 1px 4px $antd-shadow-color !default;
+$antd-shadow-1-down: 0 1px 4px $antd-shadow-color !default;
+$antd-shadow-1-left: -1px 0 4px $antd-shadow-color !default;
+$antd-shadow-1-right: 1px 0 4px $antd-shadow-color !default;
 
 $antd-layout-body-background: #f0f2f5 !default;
 $antd-layout-sider-header-background: #002140 !default;
