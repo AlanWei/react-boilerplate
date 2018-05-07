@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Sider from 'react-sider';
-import 'react-sider/lib/sider.css';
+import 'react-sider/lib/index.css';
 import logo from 'assets/logo.svg';
 import Content from './components/Content';
 import './BasicLayout.scss';
