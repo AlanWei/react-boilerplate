@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Sider from './components/Sider';
+import Sider from 'react-sider';
+import 'react-sider/lib/sider.css';
+import logo from 'assets/logo.svg';
 import Content from './components/Content';
 import './BasicLayout.scss';
 
@@ -39,8 +41,9 @@ class BasicLayout extends Component {
       <div className={classes}>
         <Sider
           appName={this.props.appName}
+          appLogo={logo}
           menuData={this.props.menuData}
-          location={this.props.location}
+          pathname={this.props.location.pathname}
         />
         <Content
           renderGlobalHeader={this.props.renderGlobalHeader}
