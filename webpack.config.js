@@ -58,7 +58,26 @@ module.exports = {
       },
     }, {
       test: /\.less$/,
-      use: [
+      use: IS_PROD ? [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: { minimize: true },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+            sourceMap: true,
+          },
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true,
+          },
+        },
+      ] : [
         { loader: 'style-loader' },
         { loader: 'css-loader' },
         {
