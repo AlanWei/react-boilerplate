@@ -2,8 +2,6 @@ import ReactDOM from 'react-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import app from './app';
 
-import './styles/index.less';
-
 const client = app.createStore(createBrowserHistory(), {});
 const { store, history } = client;
 

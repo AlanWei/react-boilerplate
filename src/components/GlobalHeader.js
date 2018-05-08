@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar } from 'antd';
+import 'antd/lib/avatar/style';
 import get from 'lodash/get';
 import './GlobalHeader.scss';
 

@@ -57,42 +57,8 @@ module.exports = {
         loader: 'babel-loader',
       },
     }, {
-      test: /\.less$/,
-      use: IS_PROD ? [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: { minimize: true },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
-            sourceMap: true,
-          },
-        },
-        {
-          loader: 'less-loader',
-          options: {
-            javascriptEnabled: true,
-          },
-        },
-      ] : [
-        { loader: 'style-loader' },
-        { loader: 'css-loader' },
-        {
-          loader: 'less-loader',
-          options: {
-            javascriptEnabled: true,
-          },
-        },
-      ],
-    }, {
       test: /\.scss$/,
       exclude: /node_modules/,
-      issuer: {
-        exclude: /\.less$/,
-      },
       use: IS_PROD ? [
         MiniCssExtractPlugin.loader,
         {
@@ -137,11 +103,18 @@ module.exports = {
         },
       ],
     }, {
-      test: /\.scss$/,
-      issuer: /\.less$/,
-      use: {
-        loader: '../sassVarsToLess.js',
-      },
+      test: /\.less$/,
+      include: /node_modules/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true,
+          },
+        },
+      ],
     }, {
       test: /\.css$/,
       include: /node_modules/,
