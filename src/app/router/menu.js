@@ -1,5 +1,3 @@
-import map from 'lodash/map';
-
 const menuData = [{
   name: 'Dashboard',
   icon: 'dashboard',
@@ -37,17 +35,4 @@ const menuData = [{
   }],
 }];
 
-const formatter = (data, parentPath = '/') => (
-  map(data, (item) => {
-    const result = {
-      ...item,
-      path: `${parentPath}${item.path}`,
-    };
-    if (item.children) {
-      result.children = formatter(item.children, `${parentPath}${item.path}/`);
-    }
-    return result;
-  })
-);
-
-export default formatter(menuData);
+export default menuData;

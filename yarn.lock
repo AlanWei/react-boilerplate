@@ -7623,9 +7623,9 @@ react-router@^4.2.0:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-sider@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-sider/-/react-sider-0.2.1.tgz#8585f8e014e2083e05ce56a84a288d03569a6afd"
+react-sider@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-sider/-/react-sider-0.2.3.tgz#aba66604da7f0a4da91e531523094a902004a295"
   dependencies:
     path-to-regexp "^2.2.1"
     prop-types "^15.6.1"
