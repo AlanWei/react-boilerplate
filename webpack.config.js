@@ -81,6 +81,13 @@ module.exports = {
       use: [
         MiniCssExtractPlugin.loader,
         'css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+            sourceMap: true,
+          },
+        },
       ],
     }, {
       test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,

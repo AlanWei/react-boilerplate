@@ -1,5 +1,5 @@
-import createApp from './createApp';
-import createStore from './createStore';
+import createApp from './init/createApp';
+import createStore from './init/createStore';
 
 export default {
   createApp,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import map from 'lodash/map';
-import routes from './routes';
+import routes from '../config/routes';
 
 const propTypes = {
   history: PropTypes.object.isRequired,
