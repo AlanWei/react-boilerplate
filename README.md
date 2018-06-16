@@ -4,7 +4,7 @@
 
 ### Development
 
-```sh
+```bash
 yarn install
 yarn dev
 ```
@@ -13,14 +13,14 @@ Navigate to `http://localhost:8080`
 
 ### Build
 
-```sh
+```bash
 yarn build
 ```
 
 Compiled assets files will be in `build` folder
 
 ### Test
-```sh
+```bash
 yarn test
 ```
 
