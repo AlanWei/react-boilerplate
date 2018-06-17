@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
 
     <title><%= htmlWebpackPlugin.options.title %></title>
@@ -15,13 +15,9 @@
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
       <link rel="preload" href="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>" as="script">
     <% } %>
-
-    <base href="/">
   </head>
   <body>
     <div id="app">
-      <!--appContent-->
     </div>
-    <!--appState-->
   </body>
 </html>
