@@ -13,22 +13,33 @@ const propTypes = {
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getMessage();
+    const { getMessage } = this.props;
+    getMessage();
   }
 
   render() {
+    const { message } = this.props;
+
     return (
       <div className="home">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <Link to="/">
+            <h1 className="App-title">
+              Welcome to React
+            </h1>
+          </Link>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/views/home/index.js</code> and save to reload.
+          To get started, edit
+          <code className="App-code">
+            src/views/home/index.js
+          </code>
+          and save to reload.
         </p>
         <Link to="/user" href="/user">
           <p className="App-intro">
-            {this.props.message}
+            {message}
           </p>
         </Link>
       </div>

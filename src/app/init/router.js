@@ -9,8 +9,8 @@ const propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-const Router = props => (
-  <ConnectedRouter history={props.history}>
+const Router = ({ history }) => (
+  <ConnectedRouter history={history}>
     <div>
       {map(routes, (route, idx) => (
         <Route key={idx} {...route} />

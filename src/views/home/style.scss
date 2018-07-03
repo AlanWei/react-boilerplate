@@ -17,10 +17,16 @@
   
   .App-title {
     font-size: 1.5em;
+    color: $ui-white;
+    text-decoration: none;
   }
   
   .App-intro {
     font-size: large;
+  }
+
+  .App-code {
+    margin: 0 0.375em;
   }
 
   .App-framework {
