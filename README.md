@@ -26,6 +26,8 @@ yarn test
 
 ---
 # CHANGLOG
+### 2018.07.13
+1. Replace `react-router-redux` with `connected-react-router`.
 ### 2018.07.03
 1. Upgrade to ESLint 5.
 2. Required Node.js version is either `8.10.0` above or `9.10.0` above.

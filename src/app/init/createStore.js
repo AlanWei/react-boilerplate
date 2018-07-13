@@ -4,7 +4,7 @@ import {
   applyMiddleware,
   compose,
 } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import reduxThunk from 'redux-thunk';
 import routes from '../config/routes';
 import reducers from './reducers';
@@ -19,17 +19,13 @@ function createStore(history, preloadedState = {}) {
   }
 
   // middlewares
-  const routeMiddleware = routerMiddleware(history);
   const middlewares = [
-    routeMiddleware,
+    routerMiddleware(history),
     reduxThunk,
   ];
 
   const store = createReduxStore(
-    combineReducers({
-      ...reducers,
-      router: routerReducer,
-    }),
+    connectRouter(history)(combineReducers(reducers)),
     preloadedState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
