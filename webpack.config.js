@@ -6,6 +6,7 @@ const path = require('path');
 const pkg = require('./package.json');
 
 const ENV = process.env.NODE_ENV || 'development';
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 const VERSION = `v${pkg.version}`;
 const IS_PROD = ENV === 'production';
 
@@ -22,6 +23,7 @@ module.exports = {
   },
   output: {
     path: CLIENT_DIR,
+    publicPath: ASSET_PATH,
     filename: 'assets/[name].[hash:8].js',
     libraryTarget: 'umd',
   },
