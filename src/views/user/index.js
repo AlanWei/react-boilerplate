@@ -15,6 +15,8 @@ const propTypes = {
 };
 
 class User extends Component {
+  congratulation = 'Congratulation!';
+
   componentDidMount() {
     const { getMessage, getUser } = this.props;
     getMessage();
@@ -45,6 +47,9 @@ class User extends Component {
         </p>
         <p className="App-intro">
           {user}
+        </p>
+        <p className="App-intro">
+          {this.congratulation}
         </p>
       </div>
     );

@@ -1,13 +1,12 @@
 {
   "sourceMaps": true,
   "presets": [
-    "env",
-    "react"
+    "@babel/env",
+    "@babel/react"
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    "transform-class-properties",
-    "transform-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
     ["module-resolver", {
       "root": ["./src"]
     }]
