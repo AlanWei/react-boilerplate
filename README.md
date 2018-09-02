@@ -26,6 +26,10 @@ yarn test
 
 ---
 # CHANGLOG
+### 2018.09.02
+1. Upgrade to Babel 7 & related packages.
+2. Jest is not compatible at the moment.
+3. Add class property demo in User page.
 ### 2018.07.13
 1. Replace `react-router-redux` with `connected-react-router`.
 ### 2018.07.03
