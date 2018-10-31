@@ -1,22 +1,24 @@
-import Loadable from 'react-loadable';
+import React, { lazy, Suspense } from 'react';
+import Loading from 'views/loading';
 
-const AsyncHome = Loadable({
-  loader: () => import('views/home'),
-  loading: () => null,
-});
-
-const AsyncUser = Loadable({
-  loader: () => import('views/user'),
-  loading: () => null,
-});
+const Home = lazy(() => import('views/home'));
+const User = lazy(() => import('views/user'));
 
 const routes = [{
   path: '/',
   exact: true,
-  component: AsyncHome,
+  component: () => (
+    <Suspense fallback={<Loading />}>
+      <Home />
+    </Suspense>
+  ),
 }, {
   path: '/user',
-  component: AsyncUser,
+  component: () => (
+    <Suspense fallback={<Loading />}>
+      <User />
+    </Suspense>
+  ),
 }];
 
 export default routes;
