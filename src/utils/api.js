@@ -11,7 +11,7 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-const returnJson = response => response.data;
+const returnJson = (response) => response.data;
 
 const standardResponse = (response) => {
   if (response.status < 400) {
@@ -33,15 +33,10 @@ const api = () => {
       };
     },
 
-    get: (url, query) => (
-      opt.instance.get(url, {
-        params: query,
-      }).then(standardResponse)
-    ),
+    get: (url, query) =>
+      opt.instance.get(url, { params: query }).then(standardResponse),
 
-    post: (url, data) => (
-      opt.instance.post(url, data).then(standardResponse)
-    ),
+    post: (url, data) => opt.instance.post(url, data).then(standardResponse),
   };
 };
 

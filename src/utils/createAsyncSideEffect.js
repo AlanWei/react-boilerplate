@@ -1,7 +1,7 @@
 function createAsyncSideEffect(status, action, transforms, onError) {
   const expectedStatus = `_${status.toUpperCase()}`;
 
-  return dispatch => (
+  return (dispatch) =>
     action(dispatch)
       .then((resultAction) => {
         if (resultAction.type.indexOf(expectedStatus) === -1) {
@@ -18,8 +18,7 @@ function createAsyncSideEffect(status, action, transforms, onError) {
           return onError(err);
         }
         throw err;
-      })
-  );
+      });
 }
 
 export default createAsyncSideEffect;

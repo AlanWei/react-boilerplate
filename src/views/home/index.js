@@ -25,29 +25,23 @@ class Home extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Link to="/">
-            <h1 className="App-title">
-              Welcome to React
-            </h1>
+            <h1 className="App-title">Welcome to React</h1>
           </Link>
         </header>
         <p className="App-intro">
           To get started, edit
-          <code className="App-code">
-            src/views/home/index.js
-          </code>
+          <code className="App-code">src/views/home/index.js</code>
           and save to reload.
         </p>
         <Link to="/user" href="/user">
-          <p className="App-intro">
-            {message}
-          </p>
+          <p className="App-intro">{message}</p>
         </Link>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   message: state.home.message,
 });
 
@@ -56,4 +50,7 @@ const mapDispatchToProps = {
 };
 
 Home.propTypes = propTypes;
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Home);

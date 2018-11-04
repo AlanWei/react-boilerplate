@@ -7,8 +7,11 @@
     "import"
   ],
   "rules": {
+    "arrow-parens": [2, "always"],
+    "implicit-arrow-linebreak": [0],
+    "function-paren-newline": [0],
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": 0
+    "react/forbid-prop-types": [0]
   },
   "settings": {
     "import/resolver": {

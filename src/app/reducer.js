@@ -4,5 +4,4 @@ const defaultState = () => ({
   isLogin: false,
 });
 
-export default createReducer(defaultState, {
-});
+export default createReducer(defaultState, {});
