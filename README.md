@@ -27,6 +27,10 @@ yarn test
 ---
 # CHANGLOG
 ### 2018.09.02
+1. Upgrade to React 16.7.0.
+2. Fix Jest issue.
+3. Keep babel-eslint as 8.0.1 to make `yarn lint` work.
+### 2018.09.02
 1. Upgrade to Babel 7 & related packages.
 2. Jest is not compatible at the moment.
 3. Add class property demo in User page.

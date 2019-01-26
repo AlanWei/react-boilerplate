@@ -50,10 +50,7 @@ module.exports = {
       exclude: /node_modules/,
       use: IS_PROD ? [
         MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: { minimize: true },
-        },
+        'css-loader',
         {
           loader: 'postcss-loader',
           options: {
