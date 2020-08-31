@@ -1,10 +1,9 @@
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
 import { createStore, createApp } from 'app';
 
 import './styles/index.scss';
 
-const { store, history } = createStore(createBrowserHistory(), {});
-const app = createApp(store, history);
+const store = createStore({});
+const app = createApp(store);
 
 ReactDOM.render(app, window.document.getElementById('app'));

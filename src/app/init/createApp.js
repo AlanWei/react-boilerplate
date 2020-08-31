@@ -1,11 +1,20 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Router from './router';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import map from 'lodash/map';
 
-const createApp = (store, history) => (
+import routes from '../config/routes';
+
+const createApp = (store) => (
   <React.StrictMode>
     <Provider store={store}>
-      <Router history={history} />
+      <BrowserRouter>
+        <Switch>
+          {map(routes, (route, idx) => (
+            <Route key={idx} {...route} />
+          ))}
+        </Switch>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
