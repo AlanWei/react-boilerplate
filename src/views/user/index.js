@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from 'assets/logo.svg';
-import homeAction from '../home/action';
 import action from './action';
 import './style.scss';
 
 const propTypes = {
   message: PropTypes.string.isRequired,
   user: PropTypes.string.isRequired,
-  getMessage: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
 };
 
@@ -18,8 +16,7 @@ class User extends Component {
   congratulation = 'Congratulation!';
 
   componentDidMount() {
-    const { getMessage, getUser } = this.props;
-    getMessage();
+    const { getUser } = this.props;
     getUser();
   }
 
@@ -53,7 +50,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getUser: action.getUser,
-  getMessage: homeAction.getMessage,
 };
 
 User.propTypes = propTypes;

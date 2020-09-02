@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import map from 'lodash/map';
 
-import routes from '../config/routes';
+import routes from './routes';
 
 const createApp = (store) => (
   <React.StrictMode>

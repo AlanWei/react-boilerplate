@@ -7,6 +7,7 @@
     "import"
   ],
   "rules": {
+    "no-param-reassign": ["error", { "props": false }],
     "arrow-parens": [2, "always"],
     "implicit-arrow-linebreak": [0],
     "function-paren-newline": [0],
