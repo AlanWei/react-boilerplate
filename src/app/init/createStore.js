@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import homeReducer from 'views/home/homeSlice';
-import user from 'views/user/reducer';
+import userReducer from 'views/user/userSlice';
 import appReducer from './appSlice';
 
 function createStore(preloadedState = {}) {
@@ -8,7 +8,7 @@ function createStore(preloadedState = {}) {
     reducer: {
       app: appReducer,
       home: homeReducer,
-      user,
+      user: userReducer,
     },
     middleware: [...getDefaultMiddleware()],
     preloadedState,
