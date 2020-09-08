@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import homeReducer from 'views/home/homeSlice';
-import userReducer from 'views/user/userSlice';
+
+import homeReducer from '../../views/home/homeSlice';
+import userReducer from '../../views/user/userSlice';
 import appReducer from './appSlice';
 
 function createStore(preloadedState = {}) {

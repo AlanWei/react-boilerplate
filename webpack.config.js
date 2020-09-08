@@ -1,6 +1,9 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const postcssImport = require('postcss-import');
 const path = require('path');
 const pkg = require('./package.json');
 
@@ -23,18 +26,11 @@ module.exports = {
   output: {
     path: CLIENT_DIR,
     publicPath: ASSET_PATH,
-    filename: 'assets/[name].[hash:8].js',
-    libraryTarget: 'umd',
+    filename: 'assets/[id].bundle.js',
   },
   optimization: {
     splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
+      chunks: 'all',
     },
   },
   module: {
@@ -49,42 +45,41 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: IS_PROD
-          ? [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
+        use: [
+          IS_PROD
+            ? MiniCssExtractPlugin.loader
+            : {
+                loader: 'style-loader',
+                options: {
+                  injectType: 'singletonStyleTag',
+                },
+              },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: (loader) => [
+                  autoprefixer(),
+                  cssnano(),
+                  postcssImport({ root: loader.resourcePath }),
+                ],
+                sourceMap: false,
               },
             },
-            {
-              loader: 'sass-loader',
-              options: {
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                modules: true,
                 includePaths: [SOURCE_DIR],
               },
             },
-          ]
-          : [
-            {
-              loader: 'style-loader',
-              options: { singleton: true },
-            },
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true,
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                includePaths: [SOURCE_DIR],
-              },
-            },
-          ],
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -95,7 +90,13 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
+              postcssOptions: {
+                plugins: (loader) => [
+                  autoprefixer(),
+                  postcssImport({ root: loader.resourcePath }),
+                ],
+                sourceMap: false,
+              },
             },
           },
         ],
@@ -104,36 +105,39 @@ module.exports = {
         test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
         use: IS_PROD
           ? {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[hash:8].[ext]',
-              outputPath: 'assets/images/',
-            },
-          }
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'assets/images/',
+              },
+            }
           : {
-            loader: 'url-loader',
-          },
+              loader: 'url-loader',
+            },
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'assets/css/style.[hash:8].css',
-      chunkFilename: 'assets/css/[id].[hash:8].css',
+      filename: 'assets/css/style.css',
     }),
-    new CopyWebpackPlugin([{ from: 'favicon.ico' }]),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'favicon.ico' }],
+    }),
     new HtmlWebpackPlugin({
       title: 'React App',
       filename: './index.html',
       template: './index.ejs',
     }),
   ],
-  devtool: IS_PROD ? 'source-map' : 'eval-source-map',
+  devtool: IS_PROD ? 'none' : 'eval-source-map',
   devServer: {
     port: process.env.PORT || 8080,
     host: 'localhost',
     publicPath: '/',
     contentBase: SOURCE_DIR,
     historyApiFallback: true,
+    stats: 'minimal',
+    hot: true,
   },
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import logo from 'assets/logo.svg';
+import logo from '../../assets/logo.svg';
 import { getUserAsync, selectUser } from './userSlice';
 import { selectMessage } from '../home/homeSlice';
 import './style.scss';

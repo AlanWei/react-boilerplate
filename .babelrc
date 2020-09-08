@@ -1,14 +1,5 @@
 {
   "sourceMaps": true,
-  "presets": [
-    "@babel/env",
-    "@babel/react"
-  ],
-  "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-syntax-dynamic-import",
-    ["module-resolver", {
-      "root": ["./src"]
-    }]
-  ]
+  "presets": ["@babel/env", "@babel/react"],
+  "plugins": []
 }

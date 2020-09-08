@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import Loading from 'views/loading';
 
-const Home = lazy(() => import('views/home'));
-const User = lazy(() => import('views/user'));
+import Loading from '../../views/loading';
+
+const Home = lazy(() => import('../../views/home'));
+const User = lazy(() => import('../../views/user'));
 
 const routes = [
   {
