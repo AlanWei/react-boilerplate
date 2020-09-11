@@ -1,0 +1,12 @@
+{
+  "/message": {
+    "get": {
+      "data": { "id": 1, "value": "React is awesome!" }
+    }
+  },
+  "/user": {
+    "get": {
+      "data": { "id": 1, "value": "And you are one of React users." }
+    }
+  }
+}

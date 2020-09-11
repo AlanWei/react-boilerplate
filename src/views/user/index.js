@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
-import { getUserAsync, selectUser } from './userSlice';
+import { fetchUser, selectStatus, selectUser } from './userSlice';
 import { selectMessage } from '../home/homeSlice';
 import './style.scss';
 
 export default function User() {
+  const status = useSelector(selectStatus);
   const user = useSelector(selectUser);
   const message = useSelector(selectMessage);
   const dispatch = useDispatch();
-  dispatch(getUserAsync());
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchUser());
+    }
+  }, [status, dispatch]);
 
   return (
     <div className="user">

@@ -1,5 +1,13 @@
 {
   "sourceMaps": true,
-  "presets": ["@babel/env", "@babel/react"],
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ],
+    "@babel/react"
+  ],
   "plugins": []
 }

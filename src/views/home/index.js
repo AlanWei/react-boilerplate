@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import logo from '../../assets/logo.svg';
-import { getMessageAsync, selectMessage } from './homeSlice';
+import { fetchMessage, selectStatus, selectMessage } from './homeSlice';
 import './style.scss';
 
 export default function Home() {
+  const status = useSelector(selectStatus);
   const message = useSelector(selectMessage);
   const dispatch = useDispatch();
-  dispatch(getMessageAsync());
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchMessage());
+    }
+  }, [status, dispatch]);
 
   return (
     <div className="home">
@@ -25,7 +31,11 @@ export default function Home() {
         and save to reload.
       </p>
       <Link to="/user" href="/user">
-        <p className="App-intro">{message}</p>
+        {status === 'loading' ? (
+          <p className="App-intro">Loading...</p>
+        ) : (
+          <p className="App-intro">{message}</p>
+        )}
       </Link>
     </div>
   );

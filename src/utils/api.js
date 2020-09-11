@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const BASE_URL = 'http://localhost:8000';
+
 const defaultHeader = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
@@ -34,9 +36,12 @@ const api = () => {
     },
 
     get: (url, query) =>
-      opt.instance.get(url, { params: query }).then(standardResponse),
+      opt.instance
+        .get(`${BASE_URL}${url}`, { params: query })
+        .then(standardResponse),
 
-    post: (url, data) => opt.instance.post(url, data).then(standardResponse),
+    post: (url, data) =>
+      opt.instance.post(`${BASE_URL}${url}`, data).then(standardResponse),
   };
 };
 

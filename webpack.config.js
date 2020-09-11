@@ -20,9 +20,7 @@ module.exports = {
   mode: ENV,
   target: 'web',
   context: SOURCE_DIR,
-  entry: {
-    client: './index.js',
-  },
+  entry: ['@babel/polyfill', './index.js'],
   output: {
     path: CLIENT_DIR,
     publicPath: ASSET_PATH,
