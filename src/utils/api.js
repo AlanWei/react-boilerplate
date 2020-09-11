@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const BASE_URL = 'http://localhost:8000';
 

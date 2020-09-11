@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
-    "axios": "^0.18.0",
+    "axios": "^0.20.0",
     "lodash": "^4.17.20",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
