@@ -24,7 +24,7 @@ module.exports = {
   output: {
     path: CLIENT_DIR,
     publicPath: ASSET_PATH,
-    filename: 'assets/[id].bundle.js',
+    filename: 'assets/js/[id].bundle.js',
   },
   optimization: {
     splitChunks: {
@@ -116,7 +116,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'assets/css/style.css',
+      filename: 'assets/css/[id].style.css',
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'favicon.ico' }],
