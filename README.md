@@ -23,6 +23,10 @@ Compiled assets files will be in `build` folder
 
 ## CHANGLOG
 
+### 2020.09.21
+
+1. Upgrade `autoprefixer` to 10.0.0
+
 ### 2020.09.13
 
 1. Upgrade react & webpack related packages to the latest.
@@ -34,7 +38,7 @@ Compiled assets files will be in `build` folder
 
 1. Upgrade to React 16.7.0.
 2. Fix Jest issue.
-3. Keep babel-eslint as 8.0.1 to make `yarn lint` work.
+3. Keep `babel-eslint` as 8.0.1 to make `yarn lint` work.
 
 ### 2018.09.02
 
