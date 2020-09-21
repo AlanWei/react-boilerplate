@@ -2,8 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 const postcssImport = require('postcss-import');
 const pkg = require('./package.json');
 
@@ -60,8 +58,6 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: (loader) => [
-                  autoprefixer(),
-                  cssnano(),
                   postcssImport({ root: loader.resourcePath }),
                 ],
                 sourceMap: false,
@@ -89,7 +85,6 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: (loader) => [
-                  autoprefixer(),
                   postcssImport({ root: loader.resourcePath }),
                 ],
                 sourceMap: false,
