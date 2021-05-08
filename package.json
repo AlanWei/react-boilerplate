@@ -50,7 +50,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.20.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
